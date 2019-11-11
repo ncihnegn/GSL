@@ -7,7 +7,7 @@ find_package(Git)
 
 # creates a library GSL which is an interface (header files only)
 add_library(GSL INTERFACE)
-add_library(GS::GSL ALIAS GSL)
+add_library(ms-gsl::GSL ALIAS GSL)
 
 # determine whether this is a standalone project or included by other projects
 set(GSL_STANDALONE_PROJECT OFF)
@@ -89,16 +89,16 @@ install(
 )
 include(CMakePackageConfigHelpers)
 write_basic_package_version_file(
-  "${CMAKE_CURRENT_BINARY_DIR}/gsl/gslConfigVersion.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/ms-gsl/ms-gslConfigVersion.cmake"
   VERSION ${PROJECT_VERSION}
   COMPATIBILITY AnyNewerVersion)
-install(TARGETS GSL EXPORT gslConfig)
-install(EXPORT gslConfig
-  NAMESPACE GSL::
-  DESTINATION lib/cmake/gsl)
+install(TARGETS GSL EXPORT ms-gslConfig)
+install(EXPORT ms-gslConfig
+  NAMESPACE gsl::
+  DESTINATION lib/cmake/ms-gsl)
 install(FILES
-  "${CMAKE_CURRENT_BINARY_DIR}/gsl/gslConfigVersion.cmake"
-  DESTINATION lib/cmake/gsl)
+  "${CMAKE_CURRENT_BINARY_DIR}/ms-gsl/ms-gslConfigVersion.cmake"
+  DESTINATION lib/cmake/ms-gsl)
 
 
 
