@@ -1,12 +1,13 @@
 cmake_minimum_required(VERSION 3.1.3)
 
-project(GSL CXX)
+project(GSL VERSION 2.0.0 LANGUAGES CXX)
 
 include(ExternalProject)
 find_package(Git)
 
 # creates a library GSL which is an interface (header files only)
 add_library(GSL INTERFACE)
+add_library(GS::GSL ALIAS GSL)
 
 # determine whether this is a standalone project or included by other projects
 set(GSL_STANDALONE_PROJECT OFF)
@@ -86,6 +87,21 @@ install(
     DIRECTORY include/gsl
     DESTINATION include
 )
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+  "${CMAKE_CURRENT_BINARY_DIR}/gsl/gslConfigVersion.cmake"
+  VERSION ${PROJECT_VERSION}
+  COMPATIBILITY AnyNewerVersion)
+install(TARGETS GSL EXPORT gslConfig)
+install(EXPORT gslConfig
+  NAMESPACE GSL::
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/gsl)
+install(FILES
+  "${CMAKE_CURRENT_BINARY_DIR}/gsl/gslConfigVersion.cmake"
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/gsl)
+
+
+
 
 option(GSL_TEST "Generate tests." ${GSL_STANDALONE_PROJECT})
 if (GSL_TEST)
