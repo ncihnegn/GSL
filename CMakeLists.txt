@@ -92,7 +92,7 @@ write_basic_package_version_file(
   "${CMAKE_CURRENT_BINARY_DIR}/ms-gsl/ms-gslConfigVersion.cmake"
   VERSION ${PROJECT_VERSION}
   COMPATIBILITY AnyNewerVersion)
-install(TARGETS GSL EXPORT ms-gslConfig)
+install(TARGETS ms-gsl EXPORT ms-gslConfig)
 install(EXPORT ms-gslConfig
   NAMESPACE gsl::
   DESTINATION lib/cmake/ms-gsl)
