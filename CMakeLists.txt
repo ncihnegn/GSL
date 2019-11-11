@@ -53,19 +53,19 @@ target_compile_definitions(GSL INTERFACE
 
 # add include folders to the library and targets that consume it
 # the SYSTEM keyword suppresses warnings for users of the library
-if(GSL_STANDALONE_PROJECT)
-    target_include_directories(GSL INTERFACE
-        $<BUILD_INTERFACE:
-            ${CMAKE_CURRENT_SOURCE_DIR}/include
-        >
-    )
-else()
-    target_include_directories(GSL SYSTEM INTERFACE
-        $<BUILD_INTERFACE:
-            ${CMAKE_CURRENT_SOURCE_DIR}/include
-        >
-    )
-endif()
+#if(GSL_STANDALONE_PROJECT)
+#    target_include_directories(GSL INTERFACE
+#        $<BUILD_INTERFACE:
+#            ${CMAKE_CURRENT_SOURCE_DIR}/include
+#        >
+#    )
+#else()
+#    target_include_directories(GSL SYSTEM INTERFACE
+#        $<BUILD_INTERFACE:
+#            ${CMAKE_CURRENT_SOURCE_DIR}/include
+#        >
+#    )
+#endif()
 
 
 if (CMAKE_VERSION VERSION_GREATER 3.7.8)
@@ -94,7 +94,7 @@ write_basic_package_version_file(
   COMPATIBILITY AnyNewerVersion)
 install(TARGETS GSL EXPORT ms-gslConfig)
 install(EXPORT ms-gslConfig
-  NAMESPACE gsl::
+  NAMESPACE ms-gsl::
   DESTINATION lib/cmake/ms-gsl)
 install(FILES
   "${CMAKE_CURRENT_BINARY_DIR}/ms-gsl/ms-gslConfigVersion.cmake"
