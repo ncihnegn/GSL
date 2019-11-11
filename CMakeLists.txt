@@ -95,10 +95,10 @@ write_basic_package_version_file(
 install(TARGETS GSL EXPORT gslConfig)
 install(EXPORT gslConfig
   NAMESPACE GSL::
-  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/gsl)
+  DESTINATION lib/cmake/gsl)
 install(FILES
   "${CMAKE_CURRENT_BINARY_DIR}/gsl/gslConfigVersion.cmake"
-  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/gsl)
+  DESTINATION lib/cmake/gsl)
 
 
 
